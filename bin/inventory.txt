@@ -1,0 +1,12 @@
+Apple | A fresh red apple, perfect for a snack. | ./images/apple.png
+Banana | Yellow curved fruit with a soft interior. | ./images/banana.png
+Camera | Digital camera with 20MP resolution. | ./images/camera.png
+Chainsaw | ur favorite chainsaw | ./images/denji_blueprint(chainsaw).png
+Desk Lamp | Adjustable LED lamp for your workspace. | ./images/lamp.png
+Earphones | Wireless earphones with noise cancellation. | ./images/earphones.png
+Football | Official size football for amateur players. | ./images/football.png
+Guitar | Acoustic guitar for beginners and professionals. | ./images/guitar.png
+Headphones | Over-ear headphones with premium sound quality. | ./images/headphones.png
+Laptop | 15-inch laptop with the latest processor. | ./images/laptop.png
+Mug | Ceramic mug that keeps your coffee warm. | ./images/mug.png
+vxvxv | hhd | ./images/denji_eblueprint(chainsaw).png
