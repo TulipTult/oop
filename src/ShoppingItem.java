@@ -14,7 +14,6 @@ public class ShoppingItem {
         return name;
     }
 
-
     public String getDescription() {
         return description;
     }
