@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.List;
 
 public class ShoppingApp {
+    // GUI components
     private JFrame frame;
     private JTextField searchField;
     private JComboBox<String> productsDropdown;
@@ -20,29 +21,77 @@ public class ShoppingApp {
     public ShoppingApp() {
         inventory = new Inventory();
 
+        // main widow
         frame = new JFrame("Shopping App");
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(10, 10));
 
+        // padding
         ((JPanel)frame.getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        // algos menu bar
+        JMenuBar menuBar = new JMenuBar();
+        frame.setJMenuBar(menuBar);
+        
+        // srt menu bar
+        JMenu sortMenu = new JMenu("Sort Algorithm");
+        ButtonGroup sortGroup = new ButtonGroup();
+        
+       
+        JRadioButtonMenuItem defaultSortItem = new JRadioButtonMenuItem("Default Java Sort", true);
+        JRadioButtonMenuItem insertionSortItem = new JRadioButtonMenuItem("Insertion Sort");
+        JRadioButtonMenuItem bubbleSortItem = new JRadioButtonMenuItem("Bubble Sort");
+        
 
-        // Create search panel with text field and dropdown side by side
+        sortGroup.add(defaultSortItem);
+        sortGroup.add(insertionSortItem);
+        sortGroup.add(bubbleSortItem);
+        
+
+        sortMenu.add(defaultSortItem);
+        sortMenu.add(insertionSortItem);
+        sortMenu.add(bubbleSortItem);
+        
+
+        JMenu searchMenu = new JMenu("Search Algorithm");
+        ButtonGroup searchGroup = new ButtonGroup();
+
+        JRadioButtonMenuItem binarySearchItem = new JRadioButtonMenuItem("Binary Search", true);
+        JRadioButtonMenuItem linearSearchItem = new JRadioButtonMenuItem("Linear Search");
+
+        searchGroup.add(binarySearchItem);
+        searchGroup.add(linearSearchItem);
+
+        searchMenu.add(binarySearchItem);
+        searchMenu.add(linearSearchItem);
+
+        menuBar.add(sortMenu);
+        menuBar.add(searchMenu);
+        
+
+        defaultSortItem.addActionListener(e -> inventory.setSortAlgorithm(Inventory.SortAlgorithm.DEFAULT));
+        insertionSortItem.addActionListener(e -> inventory.setSortAlgorithm(Inventory.SortAlgorithm.INSERTION));
+        bubbleSortItem.addActionListener(e -> inventory.setSortAlgorithm(Inventory.SortAlgorithm.BUBBLE));
+
+        binarySearchItem.addActionListener(e -> inventory.setSearchAlgorithm(Inventory.SearchAlgorithm.BINARY));
+        linearSearchItem.addActionListener(e -> inventory.setSearchAlgorithm(Inventory.SearchAlgorithm.LINEAR));
+
+
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         
-        // Regular search field
+
         searchField = new JTextField(20);
         searchField.setPreferredSize(new Dimension(200, 30));
         
-        // Products dropdown
         String[] productNames = inventory.getAllProductNames().toArray(new String[0]);
         productsDropdown = new JComboBox<>(productNames);
         productsDropdown.setPreferredSize(new Dimension(150, 30));
         
-        // Search button
+  
         searchButton = new JButton("Search");
         
-        // Add components to search panel
+    
         searchPanel.add(new JLabel("Search: "));
         searchPanel.add(searchField);
         searchPanel.add(new JLabel("Products: "));
@@ -80,7 +129,7 @@ public class ShoppingApp {
         frame.add(westPanel, BorderLayout.WEST);
         frame.add(itemPanel, BorderLayout.CENTER);
 
-        // When dropdown selection changes, update the search field
+
         productsDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -90,7 +139,7 @@ public class ShoppingApp {
             }
         });
 
-        // Search button action
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,7 +157,6 @@ public class ShoppingApp {
         frame.setVisible(true);
     }
 
-    // Update product dropdown when inventory changes
     private void updateProductsDropdown() {
         productsDropdown.removeAllItems();
         List<String> productNames = inventory.getAllProductNames();
@@ -213,7 +261,7 @@ public class ShoppingApp {
             }
             
             inventory.addItem(name, description, selectedImagePath);
-            updateProductsDropdown(); // Update dropdown after adding item
+            updateProductsDropdown(); 
             JOptionPane.showMessageDialog(frame, "Product added successfully!");
             
             selectedImagePath = "";

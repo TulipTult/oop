@@ -9,9 +9,11 @@ public class ShoppingItem {
         this.imagePath = imagePath;
     }
 
+
     public String getName() {
         return name;
     }
+
 
     public String getDescription() {
         return description;
